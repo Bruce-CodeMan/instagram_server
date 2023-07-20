@@ -4,6 +4,7 @@ import { Repository, DeepPartial } from "typeorm";
 
 // Custom Imports
 import { User } from "./models/user.entity";
+import { makeSalt, encryptPassword } from "@/shared/utils/encrypt";
 
 @Injectable()
 export class UserService {
@@ -18,6 +19,8 @@ export class UserService {
    * @returns true / false
    */
   async create(entity: DeepPartial<User>): Promise<boolean> {
+    entity.salt = makeSalt();
+    entity.password = encryptPassword(entity.password, entity.salt);
     const res = await this.UserRepository.insert(entity);
     if(res && res.raw.affectedRows >0) {
       return true;
