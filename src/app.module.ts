@@ -12,6 +12,7 @@ import {
   PASSWORD,
   DATA_BASE
 } from '@/common/constant/mysql';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import {
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: true
-    })
+    }),
+    UserModule
   ],
   controllers: [],
   providers: [],

@@ -1,4 +1,4 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType, PartialType } from "@nestjs/graphql";
 
 
 @InputType()
@@ -12,3 +12,6 @@ export class UserInput{
     @Field({ description: "密码" })
     password: string;
 }
+
+@InputType()
+export class PartialUserInput extends PartialType(UserInput){}

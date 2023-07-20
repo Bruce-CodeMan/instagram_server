@@ -2,7 +2,7 @@ import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
 // Custom Imports
 import { UserService } from "./user.service";
-import { UserInput } from "./dto/user-input.type";
+import { UserInput, PartialUserInput } from "./dto/user-input.type";
 import { UserType } from "./dto/user.type";
 import { Result } from "@/common/dto/result.type";
 import { SUCCESS, UPDATE_USER_ERR } from "@/common/constant/code";
@@ -52,7 +52,7 @@ export class UserResolver{
   @Mutation(() => Result, { description: "通过id更新用户信息" })
   async updateUser(
     @Args("id") id: string,
-    @Args("params") params: UserInput
+    @Args("params") params: PartialUserInput
   ): Promise<Result> {
     const res = await this.userService.update(id, params)
     if(res) {
