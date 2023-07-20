@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloDriver } from '@nestjs/apollo';
 
 // Custom Imports
 import { 
@@ -25,6 +26,10 @@ import {
       logging: true,
       synchronize: true,
       autoLoadEntities: true
+    }),
+    GraphQLModule.forRoot({
+      driver: ApolloDriver,
+      autoSchemaFile: true
     })
   ],
   controllers: [],
