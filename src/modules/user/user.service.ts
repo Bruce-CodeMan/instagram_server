@@ -68,4 +68,18 @@ export class UserService {
     })
     return res;
   }
+
+  /**
+   * 通过Id查询用户
+   * @param id 用户的id
+   * @returns 用户的实体
+   */
+  async findById(id: string): Promise<User> {
+    const res = await this.UserRepository.findOne({
+      where: {
+        id
+      }
+    })
+    return res;
+  }
 }
