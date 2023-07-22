@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { UseGuards } from "@nestjs/common";
 
 // Custom Imports
 import { UserService } from "./user.service";
@@ -6,8 +7,10 @@ import { UserInput, PartialUserInput } from "./dto/user-input.type";
 import { UserType } from "./dto/user.type";
 import { Result } from "@/common/dto/result.type";
 import { SUCCESS, UPDATE_USER_ERR } from "@/common/constant/code";
+import { GqlAuthGuard } from "@/common/guards/auth.guards";
 
 @Resolver()
+@UseGuards(GqlAuthGuard)
 export class UserResolver{
   constructor(
     private readonly userService: UserService
