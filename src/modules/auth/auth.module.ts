@@ -7,6 +7,7 @@ import { JwtModule } from "@nestjs/jwt"
 import { User } from "@/modules/user/models/user.entity";
 import { JWT_SECRET, JWT_EXPIRATION } from "@/common/constant/jwt";
 import { AuthResolver } from "./auth.resolver";
+import { JwtStrategy } from "./jwt.strategy";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AuthResolver } from "./auth.resolver";
     }),
     TypeOrmModule.forFeature([User])
   ],
-  providers: [AuthResolver],
+  providers: [AuthResolver, JwtStrategy],
   exports: []
 })
 export class AuthModule {}
