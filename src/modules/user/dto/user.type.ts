@@ -13,4 +13,7 @@ export class UserType {
 
   @Field({ description: "手机号" })
   tel: string;
+
+  @Field({ description: "头像" })
+  avatar: string;
 }

@@ -21,4 +21,7 @@ export class User {
 
     @Column({ comment: "盐", nullable: true })
     salt: string;
+
+    @Column({ comment: "头像", nullable: true })
+    avatar: string;
 }
