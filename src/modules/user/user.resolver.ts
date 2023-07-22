@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, Mutation, Query, Resolver, Context } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 
 // Custom Imports
@@ -34,6 +34,17 @@ export class UserResolver{
   @Query(() => UserType, { description: "通过id获取用户信息" })
   async findById(@Args("id") id: string): Promise<UserType> {
     return await this.userService.findById(id)
+  }
+
+  /**
+   * 通过上下文来获取用户的信息
+   * @param ctx 
+   * @returns 
+   */
+  @Query(() => UserType, { description: "通过上下文来获取用户信息" })
+  async getUserInfo(@Context() ctx: any): Promise<UserType> {
+    const id = ctx.req.user.id;
+    return await this.userService.findById(id);
   }
 
   /**
