@@ -12,7 +12,8 @@ import {
   PASSWORD,
   DATA_BASE
 } from '@/common/constant/mysql';
-import { UserModule } from './modules/user/user.module';
+import { UserModule } from '@/modules/user/user.module';
+import { AuthModule } from '@/modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { UserModule } from './modules/user/user.module';
       driver: ApolloDriver,
       autoSchemaFile: true
     }),
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

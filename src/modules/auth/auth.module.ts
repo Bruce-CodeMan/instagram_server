@@ -8,6 +8,7 @@ import { User } from "@/modules/user/models/user.entity";
 import { JWT_SECRET, JWT_EXPIRATION } from "@/common/constant/jwt";
 import { AuthResolver } from "./auth.resolver";
 import { JwtStrategy } from "./jwt.strategy";
+import { UserService } from "../user/user.service";
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { JwtStrategy } from "./jwt.strategy";
     }),
     TypeOrmModule.forFeature([User])
   ],
-  providers: [AuthResolver, JwtStrategy],
+  providers: [AuthResolver, JwtStrategy, UserService],
   exports: []
 })
 export class AuthModule {}
